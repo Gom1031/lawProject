@@ -1,4 +1,3 @@
-# lawProject
 <h1>법무사 사이트 만들기</h1>
 
 <h2>Frontend 해야할 일</h2>
@@ -10,6 +9,7 @@ main.html(208번째 줄~238번째 줄)
 
 3. main_news.html / main_members.html / main.introduction.html / main_example.html / main_consult.html 파일 마저 채워주세요
 
+>>html파일에 주석처리해서 수정해둘게요
 
 <h2>Backend 해야할 일</h2>
 사례 게시판 쓰기  
