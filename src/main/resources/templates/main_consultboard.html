@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Main Consultboard</title>
+</head>
+<body>
+    <h1>Consultation Board</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <!-- Additional fields as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Here is where we iterate over the consultboards object, passed from our controller -->
+            <tr th:each="consultboard : ${consultboards}">
+                <td th:text="${consultboard.id}"></td>
+                <td th:text="${consultboard.title}"></td>
+                <td th:text="${consultboard.content}"></td>
+                <!-- Add additional fields as needed -->
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- This link leads to the 'write' page, allowing the user to create a new consultboard entry -->
+    <a th:href="@{/consultboard/write}">Create a new consultation</a>
+</body>
+</html>

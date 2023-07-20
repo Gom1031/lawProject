@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상담 게시글</title>
+    <style>
+        .post-container {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .post-title {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .post-body {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="post-container">
+        <div class="post-title" th:text="${consultboard.title}">게시글 제목</div>
+        <div class="post-body" th:text="${consultboard.content}">게시글 내용</div>
+        <div class="post-writer" th:text="${consultboard.writer}">게시글 작성자</div>
+        <div class="post-date" th:text="${consultboard.date}">게시글 날짜</div>
+    </div>
+</body>
+</html>
