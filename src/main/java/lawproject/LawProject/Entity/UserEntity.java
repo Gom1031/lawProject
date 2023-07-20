@@ -1,4 +1,4 @@
-package lawproject.lawproject.Entity;
+package lawproject.LawProject.Entity;
 
 public class UserEntity {
     

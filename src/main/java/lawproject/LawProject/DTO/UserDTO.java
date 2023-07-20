@@ -1,4 +1,4 @@
-package lawproject.lawproject.DTO;
+package lawproject.LawProject.DTO;
 
 public class UserDTO {
     

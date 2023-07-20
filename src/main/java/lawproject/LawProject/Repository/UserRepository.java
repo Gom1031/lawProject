@@ -1,4 +1,4 @@
-package lawproject.lawproject.Repository;
+package lawproject.LawProject.Repository;
 
 public class UserRepository {
     

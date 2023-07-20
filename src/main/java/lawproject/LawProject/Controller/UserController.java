@@ -1,4 +1,4 @@
-package lawproject.lawproject.Controller;
+package lawproject.LawProject.Controller;
 
 public class UserController {
     

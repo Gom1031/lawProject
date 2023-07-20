@@ -1,4 +1,4 @@
-package lawproject.lawproject.Service;
+package lawproject.LawProject.Service;
 
 public class UserService {
     
