@@ -1,5 +1,7 @@
 package lawproject.LawProject.Entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,5 +21,5 @@ public class consultboardEntity {
     private String title;
     private String content;
     private String writer;
-    private String date;
+    private LocalDateTime date;
 }

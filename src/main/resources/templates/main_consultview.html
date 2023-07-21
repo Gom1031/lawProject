@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Consultboard View</title>
+</head>
+<body>
+    <h1>Consultation Board - View Post</h1>
+
+    <div>
+        <label>Id:</label>
+        <span th:text="${consultboard.id}"></span>
+    </div>
+    <div>
+        <label>Title:</label>
+        <span th:text="${consultboard.title}"></span>
+    </div>
+    <div>
+        <label>Content:</label>
+        <span th:text="${consultboard.content}"></span>
+    </div>
+    <div>
+        <label>Writer:</label>
+        <span th:text="${consultboard.writer}"></span>
+    </div>
+    <div>
+        <label>Date:</label>
+        <span th:text="${consultboard.date}"></span>
+    </div>
+
+    <!-- Go back to the list of consultboards -->
+    <a th:href="@{/consultboard/list}">Back to the list</a>
+</body>
+</html>

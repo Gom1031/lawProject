@@ -12,7 +12,16 @@ public interface consultboardMapper {
     consultboardMapper INSTANCE = Mappers.getMapper(consultboardMapper.class);
 
     @Mapping(source = "id", target = "id")
+    @Mapping(source = "title", target = "title")
+    @Mapping(source = "content", target = "content")
+    @Mapping(source = "writer", target = "writer")
+    @Mapping(source = "date", target = "date")
     consultboardEntity dtoToEntity(consultboardDTO dto);
 
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "title", target = "title")
+    @Mapping(source = "content", target = "content")
+    @Mapping(source = "writer", target = "writer")
+    @Mapping(source = "date", target = "date")
     consultboardDTO entityToDto(consultboardEntity entity);
 }

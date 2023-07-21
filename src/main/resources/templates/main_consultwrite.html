@@ -6,7 +6,8 @@
     <title>게시글 작성</title>
 </head>
 <body>
-    <form th:object="${consultboard}" method="post" action="/post">
+    <form th:object="${consultboard}" method="post" th:action="@{/consultboard/post}">
+
         <div class="form-group">
             <label for="title">제목:</label>
             <input type="text" id="title" th:field="*{title}" required>
@@ -18,10 +19,6 @@
         <div class="form-group">
             <label for="writer">작성자:</label>
             <input type="text" id="writer" th:field="*{writer}" required>
-        </div>
-        <div class="form-group">
-            <label for="date">날짜:</label>
-            <input type="date" id="date" th:field="*{date}" required>
         </div>
         <button type="submit">제출</button>
     </form>

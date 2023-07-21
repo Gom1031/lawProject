@@ -1,5 +1,7 @@
 package lawproject.LawProject.DTO;
 
+import java.time.LocalDateTime;
+
 import lombok.Data;
 
 @Data
@@ -8,5 +10,5 @@ public class consultboardDTO {
     private String title;
     private String content;
     private String writer;
-    private String date;
+    private LocalDateTime date;
 }
