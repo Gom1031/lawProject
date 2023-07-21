@@ -5,6 +5,8 @@ import org.springframework.transaction.annotation.Transactional;
 import lawproject.LawProject.Entity.consultboardEntity;
 import lawproject.LawProject.Repository.consultboardRepository;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,6 +47,11 @@ public class consultboardService {
     @Transactional
     public void delete(consultboardEntity consultboard) {
         consultboardRepository.delete(consultboard);
+    }
+
+    public String formatDateToKorean(LocalDateTime dateTime) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초");
+    return dateTime.format(formatter);
     }
 
 }

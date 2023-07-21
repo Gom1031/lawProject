@@ -20,7 +20,8 @@
                 <td th:text="${consultboard.id}"></td>
                 <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.title}"></a></td>
                 <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.content}"></a></td>
-                <td th:text="${#temporals.format(comment.createdDate, 'yyyy년MM월dd HH시mm분ss초')}"></td>
+                <!-- Use the formattedDate field here -->
+                <td th:text="${consultboard.formattedDate}"></td>
             </tr>
         </tbody>
     </table>

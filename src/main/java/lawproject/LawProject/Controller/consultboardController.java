@@ -6,6 +6,7 @@ import lawproject.LawProject.Mapper.consultboardMapper;
 import lawproject.LawProject.Service.consultboardService;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,12 @@ public class consultboardController {
 
     @GetMapping("/list")
     public String list(Model model) {
-        model.addAttribute("consultboards", consultboardService.findAll());
+        List<consultboardEntity> consultboards = consultboardService.findAll();
+        consultboards.forEach(consultboard -> {
+            String formattedDate = consultboardService.formatDateToKorean(consultboard.getDate());
+            consultboard.setFormattedDate(formattedDate);
+        });
+        model.addAttribute("consultboards", consultboards);
         return "main_consultboard";
     }
 
@@ -56,4 +62,35 @@ public class consultboardController {
         model.addAttribute("consultboard", consultboardMapper.entityToDto(consultboard));
         return "main_consultview";
     }
+
+    @GetMapping("/edit/{id}")
+    public String editForm(@PathVariable("id") Long id, Model model) {
+        consultboardEntity consultboard = consultboardService.findOne(id);
+        if(consultboard == null) {
+            return "redirect:/consultboard/list";
+        }
+        model.addAttribute("consultboard", consultboardMapper.entityToDto(consultboard));
+        return "main_consultedit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editSubmit(@PathVariable("id") Long id, @ModelAttribute consultboardDTO consultboardDto) {
+        // Find the original entity
+        consultboardEntity originalConsultboard = consultboardService.findOne(id);
+        if(originalConsultboard == null) {
+            return "redirect:/consultboard/list";
+        }
+        // Map the DTO to a new entity
+        consultboardEntity consultboard = consultboardMapper.dtoToEntity(consultboardDto);
+        // Set the id of the new entity to the id of the original
+        consultboard.setId(id);
+        // Preserve the original date
+        consultboard.setDate(originalConsultboard.getDate());
+        // Preserve the original writer
+        consultboard.setWriter(originalConsultboard.getWriter());
+        // Save the new entity
+        consultboardService.save(consultboard);
+        return "redirect:/consultboard/view/" + id;
+    }
+
 }

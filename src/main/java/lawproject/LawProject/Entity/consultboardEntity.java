@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,4 +23,6 @@ public class consultboardEntity {
     private String content;
     private String writer;
     private LocalDateTime date;
+    @Transient  // This means the field will not be persisted in the database
+    private String formattedDate;
 }

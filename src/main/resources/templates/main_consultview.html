@@ -27,6 +27,9 @@
         <span th:text="${consultboard.date}"></span>
     </div>
 
+    <!-- Edit Post -->
+    <a th:href="@{/consultboard/edit/{id}(id=${consultboard.id})}">Edit this Post</a>
+
     <!-- Go back to the list of consultboards -->
     <a th:href="@{/consultboard/list}">Back to the list</a>
 </body>
