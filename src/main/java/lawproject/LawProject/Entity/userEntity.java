@@ -11,20 +11,25 @@ import javax.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
 
-
-@Table(name="consultboard")
+@Entity
+@Table(name="user")
 @Getter
 @Setter
-@Entity
-public class consultboardEntity {
+public class userEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String title;
-    private String content;
-    private String writer;
-    private LocalDateTime date;
-    
+    private String username;
+    private String password;
+    private String email;
+    private String phone_number;
+    private LocalDateTime register_date;
+    private LocalDateTime last_edit_date;
+
     @Transient  // DB에 없음을 알려줌
-    private String formattedDate;
+    private String formatted_register_Date;
+    @Transient  // DB에 없음을 알려줌
+    private String formatted_last_edit_date;
+    
+    
 }
