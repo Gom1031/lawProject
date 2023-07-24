@@ -8,7 +8,9 @@ import lawproject.LawProject.Service.consultboardService;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -49,7 +51,7 @@ public class consultboardController {
     }
     
     @PostMapping("/post")
-    public String postConsult(@ModelAttribute("consultboard") consultboardDTO consultboardDto, BindingResult result, Model model, HttpServletRequest request) {
+    public String postConsult(@Valid @ModelAttribute("consultboard") consultboardDTO consultboardDto, BindingResult result, Model model, HttpServletRequest request) {
         if (result.hasErrors()) {
             return "main_consultwrite";
         }
@@ -70,21 +72,34 @@ public class consultboardController {
     }
 
     @GetMapping("/view/{id}")
-    public String view(@PathVariable("id") Long id, Model model) {
+    public String view(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
         consultboardEntity consultboard = consultboardService.findOne(id);
-        if(consultboard == null) {
+        if (consultboard == null) {
+            redirectAttributes.addFlashAttribute("error", "The requested post does not exist.");
             return "redirect:/consultboard/list";
         }
+    
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    
+        // Add a check for null Authentication
+        if (auth == null) {
+            redirectAttributes.addFlashAttribute("error", "You need to be logged in to view this post.");
+            return "redirect:/user/login";
+        }
+    
+        String currentUsername = auth.getName();
+        if (currentUsername == null || !currentUsername.equals(consultboard.getWriter())) {
+            redirectAttributes.addFlashAttribute("error", "You are not the author of this post.");
+            return "redirect:/consultboard/list";
+        }
+    
         model.addAttribute("consultboard", consultboardMapper.entityToDto(consultboard));
         return "main_consultview";
     }
-
+    
     @GetMapping("/edit/{id}")
     public String editForm(@PathVariable("id") Long id, Model model) {
         consultboardEntity consultboard = consultboardService.findOne(id);
-        if(consultboard == null) {
-            return "redirect:/consultboard/list";
-        }
         model.addAttribute("consultboard", consultboardMapper.entityToDto(consultboard));
         return "main_consultedit";
     }

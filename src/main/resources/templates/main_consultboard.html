@@ -6,12 +6,15 @@
 <body>
     <h1>Consultation Board</h1>
 
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+    
     <table>
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Title</th>
                 <th>Content</th>
+                <th>writer</th>
                 <th>Date</th>
             </tr>
         </thead>
@@ -20,6 +23,7 @@
                 <td th:text="${consultboard.id}"></td>
                 <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.title}"></a></td>
                 <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.content}"></a></td>
+                <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.writer}"></a></td>
                 <!-- Use the formattedDate field here -->
                 <td th:text="${consultboard.formattedDate}"></td>
             </tr>
@@ -27,5 +31,10 @@
     </table>
 
     <a th:href="@{/consultboard/write}">Create a new consultation</a>
+
+    <!-- Logout Button -->
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
 </body>
 </html>
