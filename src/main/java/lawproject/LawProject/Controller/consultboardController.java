@@ -10,6 +10,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,18 +47,26 @@ public class consultboardController {
         model.addAttribute("consultboard", new consultboardDTO());
         return "main_consultwrite";
     }
-
+    
     @PostMapping("/post")
-    public String postConsult(@ModelAttribute("consultboard") consultboardEntity consultboard,BindingResult result, Model model, HttpServletRequest request) {
+    public String postConsult(@ModelAttribute("consultboard") consultboardDTO consultboardDto, BindingResult result, Model model, HttpServletRequest request) {
         if (result.hasErrors()) {
-            return "consultboard_post";
+            return "main_consultwrite";
         }
-        String username = (String) request.getSession().getAttribute("username");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth != null ? auth.getName() : null;
         if (username != null) {
-            consultboard.setWriter(username);
+            consultboardDto.setWriter(username);
+        } else {
+            return "redirect:/user/login"; // user not logged in, redirect to login page
         }
+        
+        // Convert DTO to Entity
+        consultboardEntity consultboard = consultboardMapper.dtoToEntity(consultboardDto);
+        
+        // Save the entity
         consultboardService.save(consultboard);
-        return "redirect:/consultboard";
+        return "redirect:/consultboard/list";
     }
 
     @GetMapping("/view/{id}")

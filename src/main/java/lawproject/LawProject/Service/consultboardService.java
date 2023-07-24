@@ -21,6 +21,9 @@ public class consultboardService {
 
     @Transactional
     public consultboardEntity save(consultboardEntity consultboard) {
+        // 현재시각으로 설정
+        consultboard.setDate(LocalDateTime.now());
+
         return consultboardRepository.save(consultboard);
     }
 
