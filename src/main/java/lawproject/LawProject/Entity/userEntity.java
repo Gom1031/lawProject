@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import lombok.Getter;
@@ -18,7 +20,7 @@ import lombok.Setter;
 public class userEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long userid;
     private String username;
     private String password;
     private String email;
@@ -30,6 +32,18 @@ public class userEntity {
     private String formatted_register_Date;
     @Transient  // DB에 없음을 알려줌
     private String formatted_last_edit_date;
+
+    @PrePersist
+    public void prePersist() {
+        LocalDateTime now = LocalDateTime.now();
+        this.register_date = now;
+        this.last_edit_date = now;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.last_edit_date = LocalDateTime.now();
+    }
     
     
 }
