@@ -5,12 +5,14 @@ import lawproject.LawProject.Entity.consultboardEntity;
 import lawproject.LawProject.Mapper.consultboardMapper;
 import lawproject.LawProject.Service.consultboardService;
 
-import java.time.LocalDateTime;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,12 +47,16 @@ public class consultboardController {
     }
 
     @PostMapping("/post")
-    public String writeSubmit(@ModelAttribute consultboardDTO consultboardDto) {
-        consultboardEntity consultboard = consultboardMapper.dtoToEntity(consultboardDto);
-        LocalDateTime now = LocalDateTime.now();
-        consultboard.setDate(now); // set the current date and time
+    public String postConsult(@ModelAttribute("consultboard") consultboardEntity consultboard,BindingResult result, Model model, HttpServletRequest request) {
+        if (result.hasErrors()) {
+            return "consultboard_post";
+        }
+        String username = (String) request.getSession().getAttribute("username");
+        if (username != null) {
+            consultboard.setWriter(username);
+        }
         consultboardService.save(consultboard);
-        return "redirect:/consultboard/list";
+        return "redirect:/consultboard";
     }
 
     @GetMapping("/view/{id}")
