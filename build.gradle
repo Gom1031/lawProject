@@ -43,6 +43,7 @@ dependencies {
 	compileOnly 'org.mapstruct:mapstruct:1.4.2.Final'
 
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 }
 
 compileJava {

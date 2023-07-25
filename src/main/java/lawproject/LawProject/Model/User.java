@@ -1,5 +1,6 @@
 package lawproject.LawProject.Model;
 
+import lawproject.LawProject.Entity.Role;
 import lawproject.LawProject.Entity.userEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +18,7 @@ public class User implements UserDetails {
     private String phoneNumber;
     private LocalDateTime registerDate;
     private LocalDateTime lastEditDate;
+    private Role role;
 
     public User(userEntity userEntity) {
         this.userid = userEntity.getUserid();
@@ -61,5 +63,9 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public boolean isAdmin() {
+        return Role.ADMIN.equals(this.role);
     }
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ADMIN Consultboard Edit</title>
+</head>
+<body>
+
+    <h1>Edit Post</h1>
+
+    <form th:action="@{/admin/edit/{id}(id=${consultboard.id})}" th:object="${consultboard}" method="post">
+
+        <label for="title">Title:</label>
+        <input type="text" id="title" th:field="*{title}" />
+
+        <label for="content">Content:</label>
+        <textarea id="content" th:field="*{content}"></textarea>
+
+        <button type="submit">Update</button>
+
+    </form>
+
+    <!-- Go back to the post -->
+    <a th:href="@{/admin/view/{id}(id=${consultboard.id})}">Back to the Post</a>
+</body>
+</html>

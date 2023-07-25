@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>Main Consultboard</title>
 </head>
@@ -23,18 +23,24 @@
                 <td th:text="${consultboard.id}"></td>
                 <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.title}"></a></td>
                 <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.content}"></a></td>
-                <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.writer}"></a></td>
-                <!-- Use the formattedDate field here -->
+                <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.writer}" th:style="${consultboard.writer == 'admin'} ? 'color: red' : ''"></a></td>
                 <td th:text="${consultboard.formattedDate}"></td>
             </tr>
         </tbody>
     </table>
-
+    
     <a th:href="@{/consultboard/write}">Create a new consultation</a>
-
+    <!-- 로그인 버튼 -->
+    <form th:action="@{/login}" method="post">
+        <input type="submit" value="Login"/>
+    </form>
     <!-- Logout Button -->
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Logout"/>
     </form>
+
+    <!-- Admin Dashboard Button -->
+    <!-- This button will be only visible to ADMIN users -->
+    <a th:href="@{/admin/dashboard}" sec:authorize="hasRole('ADMIN')">Admin Dashboard</a>
 </body>
 </html>

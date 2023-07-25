@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 게시글 작성</title>
+</head>
+<body>
+    <form th:object="${consultboard}" method="post" th:action="@{/admin/write}">
+
+        <div class="form-group">
+            <label for="title">제목:</label>
+            <input type="text" id="title" th:field="*{title}" required>
+        </div>
+        <div class="form-group">
+            <label for="content">내용:</label>
+            <textarea id="content" th:field="*{content}" required></textarea>
+        </div>
+        <button type="submit">제출</button>
+    </form>
+</body>
+</html>

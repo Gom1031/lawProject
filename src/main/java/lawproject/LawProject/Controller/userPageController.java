@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import lawproject.LawProject.Service.userService;
 import lawproject.LawProject.DTO.userDTO;
+import lawproject.LawProject.Entity.Role;
 
 @Controller
 @RequestMapping("/user")
@@ -31,6 +32,8 @@ public class userPageController {
             return "main_register";
         }
         try {
+            // 기본적으로 모든 사용자는 USER 역할을 가지게 됩니다.
+            userDto.setRole(Role.USER);
             userService.registerUser(userDto);
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());

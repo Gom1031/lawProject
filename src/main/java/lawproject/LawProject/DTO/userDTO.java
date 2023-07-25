@@ -2,6 +2,8 @@ package lawproject.LawProject.DTO;
 
 import java.time.LocalDateTime;
 
+import lawproject.LawProject.Entity.Role;
+
 import lombok.Data;
 
 @Data
@@ -13,6 +15,6 @@ public class userDTO {
     private String phone_number;
     private LocalDateTime regiester_date;
     private LocalDateTime last_edit_date;
-
+    private Role role;
     
 }

@@ -1,8 +1,9 @@
 package lawproject.LawProject.Entity;
 
 import java.time.LocalDateTime;
-
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,6 +28,8 @@ public class userEntity {
     private String phone_number;
     private LocalDateTime register_date;
     private LocalDateTime last_edit_date;
+    @Enumerated(EnumType.STRING)
+    private Role role; // Here you need to import your custom Role enum
 
     @Transient  // DB에 없음을 알려줌
     private String formatted_register_Date;
@@ -44,6 +47,4 @@ public class userEntity {
     public void preUpdate() {
         this.last_edit_date = LocalDateTime.now();
     }
-    
-    
 }

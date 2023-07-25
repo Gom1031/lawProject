@@ -16,12 +16,15 @@ public interface consultboardMapper {
     @Mapping(source = "content", target = "content")
     @Mapping(source = "writer", target = "writer")
     @Mapping(source = "date", target = "date")
+
+    @Mapping(target="formattedDate", ignore=true)
     consultboardEntity dtoToEntity(consultboardDTO dto);
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "title", target = "title")
     @Mapping(source = "content", target = "content")
     @Mapping(source = "writer", target = "writer")
+    
     @Mapping(source = "date", target = "date")
     consultboardDTO entityToDto(consultboardEntity entity);
 }
