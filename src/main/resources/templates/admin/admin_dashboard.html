@@ -39,5 +39,6 @@
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Logout"/>
     </form>
+    <a th:href="@{/consultboard/list}" sec:authorize="hasRole('ADMIN')">Consult board</a>
 </body>
 </html>

@@ -32,14 +32,12 @@ public class LawprojectApplication {
                 userDTO newAdmin = new userDTO();
                 newAdmin.setUserid(99999L);
                 newAdmin.setUsername("admin");
-                newAdmin.setPassword("0000"); // It's highly recommended to use a secure password
+                newAdmin.setPassword("0000");
                 newAdmin.setEmail("admin@lawproject.com");
-                newAdmin.setRole(Role.ADMIN); // Modified here
-
-                // Set the values for the other NOT NULL fields
-                newAdmin.setPhone_number("1234567890"); // Set a valid phone number
-                newAdmin.setRegiester_date(LocalDateTime.now()); // Set current time as register date
-                newAdmin.setLast_edit_date(LocalDateTime.now()); // Set current time as last edit date
+                newAdmin.setRole(Role.ADMIN); 
+                newAdmin.setPhone_number("1234567890");
+                newAdmin.setRegiester_date(LocalDateTime.now());
+                newAdmin.setLast_edit_date(LocalDateTime.now());
 
                 userService.registerUser(newAdmin);
             }

@@ -3,7 +3,6 @@ package lawproject.LawProject.Service;
 import lawproject.LawProject.DTO.userDTO;
 import lawproject.LawProject.Entity.userEntity;
 import lawproject.LawProject.Repository.userRepository;
-import lawproject.LawProject.Entity.Role;
 
 import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;

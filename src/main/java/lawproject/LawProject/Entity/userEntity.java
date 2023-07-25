@@ -11,6 +11,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,6 +29,7 @@ public class userEntity {
     private String phone_number;
     private LocalDateTime register_date;
     private LocalDateTime last_edit_date;
+
     @Enumerated(EnumType.STRING)
     private Role role; // Here you need to import your custom Role enum
 
