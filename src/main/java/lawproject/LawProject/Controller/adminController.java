@@ -2,6 +2,7 @@ package lawproject.LawProject.Controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,18 +29,24 @@ public class adminController {
 
     // 관리자 대시보드 페이지로 이동하는 메소드. 모든 컨설팅 게시글을 조회하고, 모델에 추가한 후 페이지를 반환합니다.
     @GetMapping("/dashboard")
-    public String adminDashboard(Model model) {
-        // 모든 게시글을 조회
-        List<consultboardEntity> consultboards = consultboardService.findAll();
-
+    public String adminDashboard(@RequestParam(defaultValue = "1") int pageNumber,
+                    @RequestParam(defaultValue = "10") int pageSize,
+                    Model model) {
+    
+        // pageNumber가 1보다 작다면 1로 설정
+        pageNumber = pageNumber < 1 ? 1 : pageNumber;
+    
+        // pageNumber와 pageSize를 전달하여 페이지네이션 적용하여 게시글 조회
+        Page<consultboardEntity> consultboardPage = consultboardService.getConsultboardPage(pageNumber - 1, pageSize);
+    
         // 모든 게시글에 대해 한국 시간 포맷으로 날짜를 변경
-        consultboards.forEach(consultboard -> {
+        consultboardPage.forEach(consultboard -> {
             String formattedDate = consultboardService.formatDateToKorean(consultboard.getDate());
             consultboard.setFormattedDate(formattedDate);
         });
 
         // 조회된 게시글 리스트를 모델에 추가
-        model.addAttribute("consultboards", consultboards);
+        model.addAttribute("consultboardPage", consultboardPage);
         
         // 관리자 대시보드 페이지를 반환
         return "admin/admin_dashboard";

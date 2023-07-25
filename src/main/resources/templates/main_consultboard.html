@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="consultboard : ${consultboards}">
+            <tr th:each="consultboard : ${consultboardPage.content}">
                 <td th:text="${consultboard.id}"></td>
                 <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.title}"></a></td>
                 <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.content}"></a></td>
@@ -53,5 +53,13 @@
     <!-- Admin Dashboard Button -->
     <!-- This button will be only visible to ADMIN users -->
     <a th:href="@{/admin/dashboard}" sec:authorize="hasRole('ADMIN')">Admin Dashboard</a>
+    <nav>
+        <ul class="pagination">
+            <li th:each="i : ${#numbers.sequence(1, consultboardPage.totalPages)}">
+                <a th:href="@{/consultboard/list(pageNumber=${i})}" th:text="${i}"></a>
+            </li>
+        </ul>
+    </nav>
+    
 </body>
 </html>

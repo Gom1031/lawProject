@@ -4,6 +4,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lawproject.LawProject.Entity.consultboardEntity;
 import lawproject.LawProject.Repository.consultboardRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,6 +20,7 @@ public class consultboardService {
     private final consultboardRepository consultboardRepository;
 
     // 생성자 주입을 통한 의존성 주입
+    @Autowired
     public consultboardService(consultboardRepository consultboardRepository) {
         this.consultboardRepository = consultboardRepository;
     }
@@ -80,4 +85,15 @@ public class consultboardService {
         return consultboardRepository.findByContentContaining(content);
     }
     
+
+    // 페이지네이션 처리
+    int pageNumber = 1; // 페이지 번호
+    int pageSize = 10; // 페이지 크기
+
+    // 페이지네이션 처리를 위한 메소드
+    @Transactional(readOnly = true) // 읽기 전용 트랜잭션
+    public Page<consultboardEntity> getConsultboardPage(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber , pageSize); // 페이지 번호는 0부터 시작
+        return consultboardRepository.findAll(pageable); // 페이지네이션 적용하여 조회
+    }
 }

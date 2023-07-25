@@ -23,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="consultboard : ${consultboards}">
+            <tr th:each="consultboard : ${consultboardPage.content}">
                 <td th:text="${consultboard.id}"></td>
                 <td><a th:href="@{/admin/view/{id}(id=${consultboard.id})}" th:text="${consultboard.title}"></a></td>
                 <td><a th:href="@{/admin/view/{id}(id=${consultboard.id})}" th:text="${consultboard.content}"></a></td>
@@ -50,5 +50,13 @@
         <input type="submit" value="Logout"/>
     </form>
     <a th:href="@{/consultboard/list}" sec:authorize="hasRole('ADMIN')">Consult board</a>
+
+    <nav>
+        <ul class="pagination">
+            <li th:each="i : ${#numbers.sequence(1, consultboardPage.totalPages)}">
+                <a th:href="@{/admin/dashboard(pageNumber=${i})}" th:text="${i}"></a>
+            </li>
+        </ul>
+    </nav>
 </body>
 </html>
