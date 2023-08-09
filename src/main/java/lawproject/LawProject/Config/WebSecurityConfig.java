@@ -58,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // '/admin/'로 시작하는 요청은 'ADMIN' 권한을 가진 사용자만 접근 가능
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 // 모든 사용자가 접근 가능한 경로   
-                .antMatchers("/", "/main", "/user/register", "/user/login", "/consultboard/list", "/CSS/**", "/JS/**", "/images/**").permitAll()
+                .antMatchers("/", "/main/**", "/user/register", "/user/login", "/consultboard/list", "/CSS/**", "/JS/**", "/images/**").permitAll()
                 // 로그인한 사용자만 접근 가능한 경로
                 .antMatchers("/consultboard/view/**", "/consultboard/write", "/consultboard/edit/**", "/search/**").authenticated()
                 .anyRequest().authenticated() // 나머지 요청은 모두 인증된 사용자만 접근 가능

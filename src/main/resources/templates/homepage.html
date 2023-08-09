@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Agency Page Template</title>
+
+
+    <!-- Bootstrap -->
+    <link th:href="@{/CSS/bootstrap-4.4.1.css}" rel="stylesheet">
+
+    <!-- jQuery UI CSS -->
+    <link th:href="@{/jQueryAssets/jquery.ui.core.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/jQueryAssets/jquery.ui.theme.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/jQueryAssets/jquery.ui.button.min.css}" rel="stylesheet" type="text/css">
+
+    <!-- jQuery and jQuery UI JS -->
+	<script th:src="@{/JS/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/jQueryAssets/jquery-1.11.1.min.js}"></script>
+    <script th:src="@{/jQueryAssets/jquery.ui-1.10.4.button.min.js}"></script>
+	<script th:src="@{/JS/topbar.js}"></script>
+
+</head>
+
+<body>
+
+<!-- 헤드 불러오기 -->
+<div th:replace="homepage_header.html :: headerFragment"></div>
+
+
+<div id="container">
+
+
+<div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel" style="background-color: grey">
+
+<div class="carousel-inner" role="listbox">
+
+
+<ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators1" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators1" data-slide-to="1"></li>	
+                <li data-target="#carouselExampleIndicators1" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-item"> <img class="d-block mx-auto" src="" alt="Third slide">
+                <div class="carousel-caption">
+                  <h1 class="bnnertxt">Leading the Future</h1>
+                  <p class="bnnertxt_p">3rd slide Caption</p>
+                  <span class="p_sub">Lawyers have obligations of integrity, confidentiality, and avoidance of conflicts of interest in their relationships with clients, and are compelled to follow ethical regulations in advertising, attracting clients, and calculating remuneration. Attorneys are obliged to act in the public interest, and if they violate these ethics, they can be disciplined through the Bar Association. In the United States, the relationship between an attorney and a client is not viewed as a simple mandate contract, but is understood as a mixture of a contract and a position that bears fiduciary duty (duty of fiduciary duty), but in Korea, it is understood as a contractual relationship of delegation.</span>
+                </div>c
+              </div>
+	<div class="carousel-item active">
+		<video autoplay muted loop id="myVideo">
+			<source th:src="@{images/AdobeStock_177289478.mov}" type="video/mp4">
+		</video>
+
+                <div class="carousel-caption">
+                  <h1 class="bnnertxt">Justice and Law</h1>
+                  <p class="bnnertxt_p">1st slide Caption</p>
+                  <span  class="p_sub">Lawyers have obligations of integrity, confidentiality, and avoidance of conflicts of interest in their relationships with clients, and are compelled to follow ethical regulations in advertising, attracting clients, and calculating remuneration. Attorneys are obliged to act in the public interest, and if they violate these ethics, they can be disciplined through the Bar Association. In the United States, the relationship between an attorney and a client is not viewed as a simple mandate contract, but is understood as a mixture of a contract and a position that bears fiduciary duty (duty of fiduciary duty), but in Korea, it is understood as a contractual relationship of delegation.</span>
+                </div>
+              </div>
+<div class="carousel-item"> <img class="d-block mx-auto" src="@{static/images/b2.jpg}" alt="Second slide">
+      <div class="carousel-caption">
+                  <h1 class="bnnertxt"> Innovative Solutions</h1>
+                  <h6 class="bnnertxt_p">2rd slide Caption</h6>
+                  <span>Lawyers have obligations of integrity, confidentiality, and avoidance of conflicts of interest in their relationships with clients, and are compelled to follow ethical regulations in advertising, attracting clients, and calculating remuneration. Attorneys are obliged to act in the public interest, and if they violate these ethics, they can be disciplined through the Bar Association. In the United States, the relationship between an attorney and a client is not viewed as a simple mandate contract, but is understood as a mixture of a contract and a position that bears fiduciary duty (duty of fiduciary duty), but in Korea, it is understood as a contractual relationship of delegation.</span>
+                </div>
+              </div>
+        </div>
+ </div>
+
+  <div class="rd">	<div class="backdrop">
+	  	 <h1 class="rd_h1" style="font-size: 50px; font-weight: bolder; color: #fff; opacity: 90%;">승소 사례</h1>
+	     <p style="font-size: 18px; color: #fff; opacity: 85%;">주요 승소사례 수 천건 이상의 다양한 사건경험을 통한 성공사례 보유</p>
+
+		<div class="inputbox">
+			<input type="text" id="such" placeholder="  검색어를 입력해주세요....">
+	         <button type="submit" class="img">검색</button>
+		</div>
+
+
+
+    <div class="urow">
+		 <div class="ucol" OnClick="location.href ='#" style="cursor:pointer;" >
+			  <div class="figure">
+		<h4>아동청소년 사건</h4>
+	      <p>학교폭력 / 집단폭력 / 아동복지법위반 / 정서적학대 / 신체적학대</p>
+					</div>
+			</div>
+		  <div class="ucol" OnClick="location.href ='#" style="cursor:pointer;" >
+			   <div class="figure">
+			  <h4>교통범죄</h4>
+	      <p>교통사고 / 뺑소니 / 난폭운전 / 보복운전 / 음주운전</p>
+            </div>
+			  	</div>
+		  <div class="ucol" OnClick="location.href ='#" style="cursor:pointer;" >
+			  <div class="figure">
+			  <h4>마약범죄</h4>
+	      <p>수출입 / 제조 / 투약 / 매매 / 소지 / 향정신성의약품</p> </div>
+           </div>
+			<div class="ucol" OnClick="location.href ='#" style="cursor:pointer;" >
+				<div class="figure">
+					<h4>강력범죄</h4>
+	      <p>폭행 / 상해 / 협박 / 강도 / 방화</p> </div>
+           </div>
+			<div class="ucol" OnClick="location.href ='#" style="cursor:pointer;" >	  <div class="figure">
+			<h4>재산범죄</h4>
+	      <p>사기 / 횡령 / 배임 / 절도 / 공갈 / 손괴</p>
+          </div></div>
+		</div>
+
+
+	  	</div> 	</div>
+<div class="team_area">
+		<div class="team_area_title">
+		<h5 style="font-size: 50px; font-weight: 600; padding: 10px;">전문분야
+</h5><p style="font-size: 18px; color: #000; opacity: 85%;">경찰 · 판사 · 검사 출신, 형사법 전문 변호사들 로 이루어진
+형사 사건 전담 변호사팀이 의뢰인 맞춤 법률서비스를 제공합니다.</p>	</div>
+
+<ul class="team_area_row">
+	<li class="lili">
+		<a href="#">
+	<div class="team_area_col1">
+		<img src="/images/Elon_Musk_Royal_Society_(crop2).jpg" alt="lawer">
+		<div class="team_area_col1_inner">
+	 	<div class="team_contents">
+				<h5>부장검사출신<p style="font-size: 16px;">최두헌 대표변호사</p></h5></div>
+		  </div>
+			</div>
+			</a>
+		</li>
+		<li class="lili">
+		<a href="#">
+	<div class="team_area_col1">
+		<img src="/images/Elon_Musk_Royal_Society_(crop2).jpg" alt="lawer">
+		<div class="team_area_col1_inner">
+		 	<div class="team_contents">
+				<h5>부장검사출신<p style="font-size: 16px;">최두헌 대표변호사</p></h5></div>
+		  </div>
+			</div>
+			</a>
+		</li>
+		<li class="lili">
+		<a href="#">
+	<div class="team_area_col1">
+		<img src="/images/Elon_Musk_Royal_Society_(crop2).jpg" alt="lawer">
+		<div class="team_area_col1_inner">
+		 	<div class="team_contents">
+				<h5>부장검사출신<p style="font-size: 16px;">최두헌 대표변호사</p></h5></div>
+
+
+		  </div>
+			</div>
+			</a>
+		</li>
+		<li class="lili">
+		<a href="#">
+	<div class="team_area_col1">
+		<img src="/images/Elon_Musk_Royal_Society_(crop2).jpg" alt="lawer">
+		<div class="team_area_col1_inner">
+	 	<div class="team_contents">
+				<h5>부장검사출신<p style="font-size: 16px;">최두헌 대표변호사</p></h5></div>
+		  </div>
+			</div>
+			</a>
+		</li>
+		<li class="lili">
+		<a href="#">
+	<div class="team_area_col1">
+		<img src="/images/Elon_Musk_Royal_Society_(crop2).jpg" alt="lawer">
+		<div class="team_area_col1_inner">
+		  	<div class="team_contents">
+				<h5>부장검사출신<p style="font-size: 16px;">최두헌 대표변호사</p></h5></div>
+		  </div>
+			</div>
+			</a>
+		</li>
+
+
+
+
+
+	</ul>
+	</div>
+
+
+
+<div class="contact_section">
+
+
+	<div class="map_api">
+		<!-- * 카카오맵 - 지도퍼가기 -->
+		<!-- 1. 지도 노드 -->
+		<div id="daumRoughmapContainer1691220483709" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+
+		<!--
+            2. 설치 스크립트
+            * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
+        -->
+		<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+		<!-- 3. 실행 스크립트 -->
+		<script charset="UTF-8">
+			new daum.roughmap.Lander({
+				"timestamp" : "1691220483709",
+				"key" : "2fr8j",
+				"mapWidth" :  "640",
+				"mapHeight" : "640"
+			}).render();
+		</script>
+	</div>
+<div class="contact">
+  <form>
+    <div class="form-group">
+      <label for="name">성함</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="성함">
+    </div>
+    <div class="form-group">
+      <label for="email">연락처</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="연락처를 입력해주세요.." aria-describedby="emailHelp">
+      <span id="emailHelp" class="form-text text-muted" style="display: none;">연락처를 입력해주세요...</span> </div>
+    <div class="form-group">
+      <label for="message">문의 내용</label>
+      <textarea rows="10" cols="100" class="form-control" id="message" name="message" placeholder="내용을 입력해주세요..." aria-describedby="messageHelp"></textarea>
+      <span id="messageHelp" class="form-text text-muted" style="display: none;">Please enter a message.</span> </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+	</div>
+
+	<div th:replace="homepage_footer.html"></div>
+
+</div>
+	</body>
+
+</html>

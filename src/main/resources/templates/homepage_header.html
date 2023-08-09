@@ -1,0 +1,36 @@
+<head>
+    <link th:href="@{/CSS/bootstrap-4.4.1.css}" rel="stylesheet">
+
+    <!-- jQuery UI CSS -->
+    <link th:href="@{/jQueryAssets/jquery.ui.core.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/jQueryAssets/jquery.ui.theme.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/jQueryAssets/jquery.ui.button.min.css}" rel="stylesheet" type="text/css">
+
+    <!-- jQuery and jQuery UI JS -->
+	<script th:src="@{/JS/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/jQueryAssets/jquery-1.11.1.min.js}"></script>
+    <script th:src="@{/jQueryAssets/jquery.ui-1.10.4.button.min.js}"></script>
+	<script th:src="@{/JS/topbar.js}"></script>
+</head>
+<body>
+    
+    <div th:fragment="headerFragment">
+        <div id="div_login1">
+            <div class="login"><button id="login_btn" href="#"><a href="#">로그인</a></button></div>
+        </div>
+
+        <div id="lnb">
+            <div id="h1_logo">
+                <h1><a th:href="@{/main}" style="color: white; text-decoration: none;">Law Firm</a></h1>
+            </div>
+            <div id="ul_nav"><ul>
+                <li><a href="#" th:href="@{/main/about}">법무법인 소개</a></li>
+                <li><a href="#" th:href="@{/main/teams}">구성원</a></li>
+                <li><a href="#" th:href="@{/main/win_cases}">성공사례</a></li>
+                <li><a href="#">자필후기</a></li>
+                <li><a href="#">상담신청</a></li>
+            </ul></div>
+        </div>
+    </div>
+
+</body>
