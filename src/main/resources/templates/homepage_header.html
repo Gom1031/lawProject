@@ -16,7 +16,15 @@
     
     <div th:fragment="headerFragment">
         <div id="div_login1">
-            <div class="login"><button id="login_btn" href="#"><a href="#">로그인</a></button></div>
+            <!-- 로그아웃 상태일 때만 로그인 버튼 표시 -->
+            <div class="login" sec:authorize="!isAuthenticated()">
+                <button id="login_btn"><a href="#" th:href="@{/user/login}">로그인</a></button>
+            </div>
+            
+            <!-- 로그인 상태일 때만 로그아웃 버튼 표시 -->
+            <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+                <button id="login_btn" style="color: black;">로그아웃</button>
+            </form>
         </div>
 
         <div id="lnb">
@@ -27,8 +35,8 @@
                 <li><a href="#" th:href="@{/main/about}">법무법인 소개</a></li>
                 <li><a href="#" th:href="@{/main/teams}">구성원</a></li>
                 <li><a href="#" th:href="@{/main/win_cases}">성공사례</a></li>
-                <li><a href="#">자필후기</a></li>
-                <li><a href="#">상담신청</a></li>
+                <li><a href="#" th:href="@{/consultboard/list}">자필후기</a></li>
+                <li><a href="#" th:href="@{/consultboard/list}">상담신청</a></li>
             </ul></div>
         </div>
     </div>

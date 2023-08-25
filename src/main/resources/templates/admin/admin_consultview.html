@@ -1,36 +1,88 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>ADMIN Consultboard View</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Optional: Add custom CSS styles here -->
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .content-box {
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        a {
+            margin-right: 10px;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Additional CSS and JS (as in the second HTML) -->
+    <link th:href="@{/CSS/bootstrap-4.4.1.css}" rel="stylesheet">
+    <link th:href="@{/jQueryAssets/jquery.ui.core.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/jQueryAssets/jquery.ui.theme.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/jQueryAssets/jquery.ui.button.min.css}" rel="stylesheet" type="text/css">
+
+    <script th:src="@{/JS/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/jQueryAssets/jquery-1.11.1.min.js}"></script>
+    <script th:src="@{/jQueryAssets/jquery.ui-1.10.4.button.min.js}"></script>
+    <script th:src="@{/JS/topbar.js}"></script>
 </head>
+
 <body>
+    <!-- 헤드 불러오기 -->
+    <div th:replace="homepage_header.html :: headerFragment"></div>
 
-    <h1>Consultation Board - View Post</h1>
-    <div>
-        <label>Id:</label>
-        <span th:text="${consultboard.id}"></span>
-    </div>
-    <div>
-        <label>Title:</label>
-        <span th:text="${consultboard.title}"></span>
-    </div>
-    <div>
-        <label>Content:</label>
-        <span th:text="${consultboard.content}"></span>
-    </div>
-    <div>
-        <label>Writer:</label>
-        <span th:text="${consultboard.writer}"></span>
-    </div>
-    <div>
-        <label>Date:</label>
-        <span th:text="${consultboard.date}"></span>
+    <div class="container">
+        <h1 class="my-4">ADMIN Consultation Board - View Post</h1>
+        <div class="content-box mb-4">
+            <div class="mb-2">
+                <label>Id:</label>
+                <span th:text="${consultboard.id}"></span>
+            </div>
+            <div class="mb-2">
+                <label>Title:</label>
+                <span th:text="${consultboard.title}"></span>
+            </div>
+            <div class="mb-2">
+                <label>Content:</label>
+                <span th:text="${consultboard.content}"></span>
+            </div>
+            <div class="mb-2">
+                <label>Writer:</label>
+                <span th:text="${consultboard.writer}"></span>
+            </div>
+            <div class="mb-2">
+                <label>Date:</label>
+                <span th:text="${consultboard.date}"></span>
+            </div>
+        </div>
+
+        <!-- Edit Post -->
+        <a th:href="@{/admin/edit/{id}(id=${consultboard.id})}" class="btn btn-primary">Edit this Post</a>
+
+        <!-- Go back to the admin dashboard -->
+        <a th:href="@{/admin/dashboard}" class="btn btn-secondary">Back to the dashboard</a>
     </div>
 
-    <!-- Edit Post -->
-    <a th:href="@{/admin/edit/{id}(id=${consultboard.id})}">Edit this Post</a>
-
-    <!-- Go back to the list of consultboards -->
-    <a th:href="@{/admin/dashboard}">Back to the list</a>
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>

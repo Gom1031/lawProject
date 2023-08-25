@@ -1,47 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Register</title>
-
-    <!-- main_register.html -->
-    <script>
-        document.querySelector('form').addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const data = {
-                username: this.elements.username.value,
-                password: this.elements.password.value,
-                email: this.elements.email.value,
-                phone_number: this.elements.phone_number.value
-            };
-            const response = await fetch('/api/user/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-            if (response.ok) {
-                alert('User registered successfully');
-                location.href = '/user/login';
-            } else {
-                const error = await response.json();
-                alert('Error: ' + error.message);
-            }
-        });
-    </script>
-
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
 </head>
 
 <body>
-<h1>Register</h1>
-    <form action="#" th:action="@{/user/register}" th:object="${user}" method="post">
-        <p>Username: <input type="text" th:field="*{username}" /></p>
-        <p>Password: <input type="password" th:field="*{password}" /></p>
-        <p>Email: <input type="email" th:field="*{email}" /></p>
-        <p>Phone number: <input type="text" th:field="*{phone_number}" /></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-    </form>
-    <p th:if="${error}" th:text="${error}">Error message</p>
+
+    <div class="container">
+        <h1 class="my-4">Register</h1>
+
+        <form action="#" th:action="@{/user/register}" th:object="${user}" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" th:field="*{username}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" th:field="*{password}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" th:field="*{email}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="phone_number">Phone number:</label>
+                <input type="text" id="phone_number" th:field="*{phone_number}" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary">
+                <input type="reset" value="Reset" class="btn btn-secondary">
+            </div>
+        </form>
+
+        <p th:if="${error}" class="text-danger" th:text="${error}">Error message</p>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

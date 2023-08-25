@@ -1,65 +1,137 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
     <title>Main Consultboard</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Bootstrap -->
+    <link th:href="@{/CSS/bootstrap-4.4.1.css}" rel="stylesheet">
+
+    <!-- jQuery UI CSS -->
+    <link th:href="@{/jQueryAssets/jquery.ui.core.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/jQueryAssets/jquery.ui.theme.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/jQueryAssets/jquery.ui.button.min.css}" rel="stylesheet" type="text/css">
+
+    <!-- jQuery and jQuery UI JS -->
+    <script th:src="@{/JS/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/jQueryAssets/jquery-1.11.1.min.js}"></script>
+    <script th:src="@{/jQueryAssets/jquery.ui-1.10.4.button.min.js}"></script>
+    <script th:src="@{/JS/topbar.js}"></script>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 1rem;
+            background-color: transparent;
+        }
+
+        table th,
+        table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+
+        table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        table tbody + tbody {
+            border-top: 2px solid #dee2e6;
+        }
+
+        .btn-outline-primary {
+            margin-right: 5px;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Consultation Board</h1>
+    <!-- 헤드 불러오기 -->
+    <div th:replace="homepage_header.html :: headerFragment"></div>
 
-    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>writer</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="consultboard : ${consultboardPage.content}">
-                <td th:text="${consultboard.id}"></td>
-                <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.title}"></a></td>
-                <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.content}"></a></td>
-                <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.writer}" th:style="${consultboard.writer == 'admin'} ? 'color: red' : ''"></a></td>
-                <td th:text="${consultboard.formattedDate}"></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <h1 class="my-4">Consultation Board</h1>
 
-    <form th:action="@{/consultboard/search}" method="get">
-        <input type="text" name="keyword" placeholder="Search"/>
-        <select name="searchType">
-            <option value="title">Title</option>
-            <option value="writer">Username</option>
-            <option value="content">Content</option>
-        </select>
-        <input type="submit" value="Search"/>
-    </form>
-    
-    <a th:href="@{/consultboard/write}">Create a new consultation</a>
-    <!-- 로그인 버튼 -->
-    <form th:action="@{/login}" method="post">
-        <input type="submit" value="Login"/>
-    </form>
-    <!-- Logout Button -->
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Logout"/>
-    </form>
-    <a th:href="@{/user/register}">Register</a>
+        <p th:if="${error}" th:text="${error}" class="error"></p>
 
-    <!-- Admin Dashboard Button -->
-    <!-- This button will be only visible to ADMIN users -->
-    <a th:href="@{/admin/dashboard}" sec:authorize="hasRole('ADMIN')">Admin Dashboard</a>
-    <nav>
-        <ul class="pagination">
-            <li th:each="i : ${#numbers.sequence(1, consultboardPage.totalPages)}">
-                <a th:href="@{/consultboard/list(pageNumber=${i})}" th:text="${i}"></a>
-            </li>
-        </ul>
-    </nav>
-    
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>writer</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="consultboard : ${consultboardPage.content}">
+                    <td th:text="${consultboard.id}"></td>
+                    <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.title}"></a></td>
+                    <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.content}"></a></td>
+                    <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.writer}" th:style="${consultboard.writer == 'admin'} ? 'color: red' : ''"></a></td>
+                    <td th:text="${consultboard.formattedDate}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <form th:action="@{/consultboard/search}" method="get">
+            <div class="input-group mb-3">
+                <input type="text" name="keyword" class="form-control" placeholder="Search">
+                <div class="input-group-append">
+                    <select name="searchType" class="custom-select">
+                        <option value="title">Title</option>
+                        <option value="writer">Writer</option>
+                        <option value="content">Content</option>
+                    </select>
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+        
+        <a th:href="@{/consultboard/write}" class="btn btn-outline-primary">Create a new consultation</a>
+
+        <form th:action="@{/login}" method="post" class="d-inline-block ml-2" sec:authorize="!isAuthenticated()">
+            <input type="submit" value="Login" class="btn btn-outline-primary">
+        </form>
+
+        <form th:action="@{/logout}" method="post" class="d-inline-block ml-2" sec:authorize="isAuthenticated()">
+            <input type="submit" value="Logout" class="btn btn-outline-danger">
+        </form>
+
+        <a th:href="@{/user/register}" class="btn btn-outline-info ml-2" sec:authorize="!isAuthenticated()">Register</a>
+
+        <a th:href="@{/admin/dashboard}" sec:authorize="hasRole('ADMIN')" class="btn btn-outline-dark ml-2">Admin Dashboard</a>
+
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination">
+                <li th:each="i : ${#numbers.sequence(1, consultboardPage.totalPages)}" class="page-item">
+                    <a th:href="@{/consultboard/list(pageNumber=${i})}" th:text="${i}" class="page-link"></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>

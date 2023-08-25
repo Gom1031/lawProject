@@ -1,61 +1,98 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
     <title>Main Consultboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Bootstrap -->
+    <link th:href="@{/CSS/bootstrap-4.4.1.css}" rel="stylesheet">
+
+    <!-- jQuery UI CSS -->
+    <link th:href="@{/jQueryAssets/jquery.ui.core.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/jQueryAssets/jquery.ui.theme.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/jQueryAssets/jquery.ui.button.min.css}" rel="stylesheet" type="text/css">
+
+    <!-- jQuery and jQuery UI JS -->
+    <script th:src="@{/JS/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/jQueryAssets/jquery-1.11.1.min.js}"></script>
+    <script th:src="@{/jQueryAssets/jquery.ui-1.10.4.button.min.js}"></script>
+    <script th:src="@{/JS/topbar.js}"></script>
 </head>
+
 <body>
-    <h1>Consultation Board</h1>
 
-    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
-    <p th:if="${message}" th:text="${message}" style="color: red;"></p>
-    
-    <div th:if="${consultboards}">
-        <h2>Search Results</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Writer</th>
-                <th>Date</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="consultboard : ${consultboards}">
-                <td th:text="${consultboard.id}"></td>
-                <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.title}"></a></td>
-                <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.content}"></a></td>
-                <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.writer}" th:style="${consultboard.writer == 'admin'} ? 'color: red' : ''"></a></td>
-                <td th:text="${consultboard.formattedDate}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <!-- 헤드 불러오기 -->
+    <div th:replace="homepage_header.html :: headerFragment"></div>
 
-    <form th:action="@{/consultboard/search}" method="get">
-        <input type="text" name="keyword" placeholder="Search"/>
-        <select name="searchType">
-            <option value="title">Title</option>
-            <option value="writer">Writer</option>
-            <option value="content">Content</option>
-        </select>
-        <input type="submit" value="Search"/>
-    </form>
-    
-    <a th:href="@{/consultboard/write}">Create a new consultation</a>
-    <!-- Login Button -->
-    <form th:action="@{/login}" method="post">
-        <input type="submit" value="Login"/>
-    </form>
-    <!-- Logout Button -->
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Logout"/>
-    </form>
-    <a th:href="@{/user/register}">Register</a>
+    <div class="container">
+        <h1 class="my-4">Consultation Board</h1>
 
-    <!-- Admin Dashboard Button -->
-    <!-- This button will be only visible to ADMIN users -->
-    <a th:href="@{/admin/dashboard}" sec:authorize="hasRole('ADMIN')">Admin Dashboard</a>
+        <p th:if="${error}" class="text-danger" th:text="${error}"></p>
+        <p th:if="${message}" class="text-success" th:text="${message}"></p>
+
+        <div th:if="${consultboards}">
+            <h2>Search Results</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Writer</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="consultboard : ${consultboards}">
+                        <td th:text="${consultboard.id}"></td>
+                        <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.title}"></a></td>
+                        <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.content}"></a></td>
+                        <td><a th:href="@{/consultboard/view/{id}(id=${consultboard.id})}" th:text="${consultboard.writer}" th:style="${consultboard.writer == 'admin'} ? 'color: red' : ''"></a></td>
+                        <td th:text="${consultboard.formattedDate}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <form th:action="@{/consultboard/search}" method="get" class="form-inline my-3">
+            <input type="text" name="keyword" placeholder="Search" class="form-control mr-2"/>
+            <select name="searchType" class="form-control mr-2">
+                <option value="title">Title</option>
+                <option value="writer">Writer</option>
+                <option value="content">Content</option>
+            </select>
+            <input type="submit" value="Search" class="btn btn-primary"/>
+        </form>
+
+        <a th:href="@{/consultboard/write}" class="btn btn-outline-primary">Create a new consultation</a>
+
+        <form th:action="@{/login}" method="post" class="d-inline-block ml-2">
+            <input type="submit" value="Login" class="btn btn-outline-primary">
+        </form>
+
+        <form th:action="@{/logout}" method="post" class="d-inline-block ml-2">
+            <input type="submit" value="Logout" class="btn btn-outline-danger">
+        </form>
+
+        <a th:href="@{/user/register}" class="btn btn-outline-info ml-2">Register</a>
+
+        <a th:href="@{/admin/dashboard}" sec:authorize="hasRole('ADMIN')" class="btn btn-outline-dark ml-2">Admin Dashboard</a>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 </body>
 </html>

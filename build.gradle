@@ -1,14 +1,14 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '2.5.4'
+	id 'org.springframework.boot' version '2.7.14'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
 group = 'lawproject'
-version = '0.0.1-SNAPSHOT'
+version = '2.0.0'
 
 java {
-	sourceCompatibility = '11'
+	sourceCompatibility = '17'
 }
 
 configurations {
@@ -24,9 +24,7 @@ repositories {
 dependencies {
 	runtimeOnly 'mysql:mysql-connector-java:8.0.27'
 
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
@@ -44,6 +42,9 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
+	implementation 'com.google.cloud.sql:mysql-socket-factory-connector-j-8:1.1.0'
+	implementation 'org.springframework.cloud:spring-cloud-gcp-starter-sql-mysql:1.2.8.RELEASE'
 }
 
 compileJava {
@@ -56,3 +57,4 @@ compileJava {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+

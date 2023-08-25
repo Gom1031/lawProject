@@ -1,22 +1,64 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시글 작성</title>
-</head>
-<body>
-    <form th:object="${consultboard}" method="post" th:action="@{/consultboard/post}">
+<html xmlns:th="http://www.thymeleaf.org">
 
-        <div class="form-group">
-            <label for="title">제목:</label>
-            <input type="text" id="title" th:field="*{title}" required>
-        </div>
-        <div class="form-group">
-            <label for="content">내용:</label>
-            <textarea id="content" th:field="*{content}" required></textarea>
-        </div>
-        <button type="submit">제출</button>
-    </form>
+<head>
+    <title>게시글 작성</title>
+
+    <!-- Meta and Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Bootstrap -->
+    <link th:href="@{/CSS/bootstrap-4.4.1.css}" rel="stylesheet">
+
+    <!-- jQuery UI CSS -->
+    <link th:href="@{/jQueryAssets/jquery.ui.core.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/jQueryAssets/jquery.ui.theme.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/jQueryAssets/jquery.ui.button.min.css}" rel="stylesheet" type="text/css">
+
+    <!-- jQuery and jQuery UI JS -->
+    <script th:src="@{/JS/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/jQueryAssets/jquery-1.11.1.min.js}"></script>
+    <script th:src="@{/jQueryAssets/jquery.ui-1.10.4.button.min.js}"></script>
+    <script th:src="@{/JS/topbar.js}"></script>
+</head>
+
+<body>
+    <!-- 헤드 불러오기 -->
+    <div th:replace="homepage_header.html :: headerFragment"></div>
+
+    <div class="container">
+        <h1 class="my-4">게시글 작성</h1>
+
+        <form th:action="@{/consultboard/post}" th:object="${consultboard}" method="post" class="mb-3">
+            <div class="form-group">
+                <label for="title">제목:</label>
+                <input type="text" th:field="*{title}" id="title" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="content">내용:</label>
+                <textarea th:field="*{content}" id="content" class="form-control" rows="5" required></textarea>
+            </div>
+            <input type="submit" value="제출" class="btn btn-primary">
+        </form>
+
+        <a th:href="@{/consultboard/list}" class="btn btn-outline-secondary">목록으로 돌아가기</a>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>

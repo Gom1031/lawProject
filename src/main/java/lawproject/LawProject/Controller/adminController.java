@@ -113,9 +113,11 @@ public class adminController {
     @PostMapping("/write")
     public String writeSubmit(@ModelAttribute consultboardDTO consultboardDto) {
         consultboardEntity consultboard = consultboardMapper.dtoToEntity(consultboardDto);
+        consultboardDto.setWriter("admin");
         consultboardService.save(consultboard);
         return "redirect:/admin/dashboard";
     }
+
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String search(@RequestParam("searchType") String searchType, @RequestParam("keyword") String keyword, Model model) {
         List<consultboardEntity> searchResults;
